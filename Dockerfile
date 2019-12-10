@@ -8,5 +8,5 @@ FROM scratch
 COPY --from=build /gosh /usr/bin/
 RUN mkdir /.gosh \
     && touch history.txt \
-    && mv history.txt /go/bin
+    && mv history.txt /.gosh
 CMD [ "gosh" ]
