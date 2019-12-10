@@ -40,7 +40,7 @@ func history() {
 }
 
 func updateHistory(command string) {
-	f, err := os.OpenFile(gopath+"/bin/history.txt",
+	f, err := os.OpenFile("/.gosh/history.txt"
 		os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
 	if err != nil {
 		log.Println(err)
