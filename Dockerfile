@@ -1,11 +1,9 @@
 FROM golang:stretch AS build
 USER root
-RUN apt-get update \
-    && apt-get install -y \
-    git
 RUN git clone https://github.com/JesterOrNot/gosh.git \
-    && cd gosh \
-    && ./setup.sh
+    && cd gosh/src \
+    && go get -v -t -d ./... \
+    && go build -o /gosh *.go
 FROM debian
-COPY --from=build gosh /usr/bin/
+COPY --from=build /gosh /usr/bin/
 CMD gosh
