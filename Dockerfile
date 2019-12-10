@@ -4,7 +4,7 @@ RUN git clone https://github.com/JesterOrNot/gosh.git \
     && cd gosh/src \
     && go get -v -t -d ./... \
     && go build -o /gosh *.go
-FROM scratch
+FROM bash
 COPY --from=build /gosh /usr/bin/
 RUN mkdir /.gosh \
     && touch history.txt \
