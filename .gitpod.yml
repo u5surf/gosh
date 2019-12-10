@@ -2,7 +2,7 @@ image:
   file: Dockerfile
 tasks:
   # - init: mkdir ../go ../go/bin && ./setup.sh
-    command: gosh
+  - command: gosh
 ports:
   - port: 8080
     onOpen: ignore
