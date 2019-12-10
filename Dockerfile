@@ -1,12 +1,11 @@
-FROM ubuntu
+FROM golang:stretch AS build
+USER root
 RUN apt-get update \
     && apt-get install -y \
-    git \
-    golang
-
-ENV GOPATH=$HOME/go
-ENV PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+    git
 RUN git clone https://github.com/JesterOrNot/gosh.git \
     && cd gosh \
     && ./setup.sh
-CMD [ "gosh", "-v" ]
+FROM debian
+COPY --from=build gosh /usr/bin/
+CMD gosh
