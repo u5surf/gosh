@@ -6,4 +6,9 @@ RUN git clone https://github.com/JesterOrNot/gosh.git \
     && go build -o /gosh *.go
 FROM debian
 COPY --from=build /gosh /usr/bin/
-CMD gosh
+RUN mkdir \
+        /go \
+        /go/bin \
+    && touch history.txt \
+    && mv history.txt /go/bin
+CMD [ "gosh" ]
